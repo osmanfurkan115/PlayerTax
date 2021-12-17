@@ -1,0 +1,12 @@
+name: PlayerTax
+version: '${project.version}'
+main: me.heymrau.playertax.PlayerTax
+author: HeyMrau
+api-version: 1.13
+depend:
+  - Vault
+softdepend:
+  - PlaceholderAPI
+commands:
+  playertax:
+    permission: tax.admin
