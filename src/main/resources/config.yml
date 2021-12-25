@@ -5,6 +5,7 @@ interval: 30 #Minute
 tax-only-online-players: true #True: It taxes only online players at the tax time. False: It taxes all players (online and offline)
 
 tax:
+  log: true
   minimum-money: 1000 #Minimum money to get taxed
   rate: 0.5 #%0.5 of player's money
   sound: 'LEVEL_UP'

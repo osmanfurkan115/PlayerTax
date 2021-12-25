@@ -32,16 +32,19 @@ public class TaxManager {
         percentage = plugin.getConfig().getDouble("tax.rate");
         taxedPlayers = 0;
         xSound = XSound.matchXSound(plugin.getConfig().getString("tax.sound")).orElse(XSound.ENTITY_PLAYER_LEVELUP);
+
         final TaxEvent event = new TaxEvent();
         Bukkit.getPluginManager().callEvent(event);
         if (event.isCancelled()) return;
+
         CompletableFuture.runAsync(() -> {
             if (plugin.getConfig().getBoolean("tax-only-online-players"))
                 Bukkit.getOnlinePlayers().forEach(this::taxPlayer);
-            else {
-                Arrays.stream(Bukkit.getOfflinePlayers()).forEach(this::taxPlayer);
+            else Arrays.stream(Bukkit.getOfflinePlayers()).forEach(this::taxPlayer);
+            if(plugin.getConfig().getBoolean("tax.log")) {
+                Bukkit.getLogger().info("Taxed " + taxedPlayers + " players");
             }
-            Bukkit.getLogger().info("Taxed " + taxedPlayers + " players");
+
         });
 
 
